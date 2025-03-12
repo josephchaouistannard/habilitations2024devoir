@@ -152,11 +152,13 @@
             // 
             // cboProfil
             // 
+            this.cboProfil.AllowDrop = true;
             this.cboProfil.FormattingEnabled = true;
             this.cboProfil.Location = new System.Drawing.Point(354, 71);
             this.cboProfil.Name = "cboProfil";
             this.cboProfil.Size = new System.Drawing.Size(161, 21);
             this.cboProfil.TabIndex = 8;
+            this.cboProfil.SelectedIndexChanged += new System.EventHandler(this.cboProfil_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -325,6 +327,7 @@
             this.Controls.Add(this.grbLesDeveloppeurs);
             this.Name = "FrmHabilitations";
             this.Text = "Habilitations";
+            this.Load += new System.EventHandler(this.FrmHabilitations_Load);
             this.grbPwd.ResumeLayout(false);
             this.grbPwd.PerformLayout();
             this.grbDeveloppeur.ResumeLayout(false);
@@ -346,7 +349,6 @@
         private System.Windows.Forms.TextBox txtPwd1;
         private System.Windows.Forms.Button btnAnnulDev;
         private System.Windows.Forms.Button btnEnregDev;
-        private System.Windows.Forms.ComboBox cboProfil;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -362,6 +364,7 @@
         private System.Windows.Forms.Button btnDemandeModifDev;
         private System.Windows.Forms.GroupBox grbLesDeveloppeurs;
         private System.Windows.Forms.DataGridView dgvDeveloppeurs;
+        private System.Windows.Forms.ComboBox cboProfil;
     }
 }
 

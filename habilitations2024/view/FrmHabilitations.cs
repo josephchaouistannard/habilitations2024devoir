@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace habilitations2024.view
 {
@@ -61,7 +62,15 @@ namespace habilitations2024.view
         /// </summary>
         private void RemplirListeDeveloppeurs()
         {
-            List<Developpeur> lesDeveloppeurs = controller.GetLesDeveloppeurs();
+            List<Developpeur> lesDeveloppeurs;
+            if (cboProfil.SelectedIndex > 0)
+            {
+                lesDeveloppeurs = controller.GetLesDeveloppeurs(((Profil)cboProfil.SelectedItem).Idprofil);
+            }
+            else
+            {
+                lesDeveloppeurs = controller.GetLesDeveloppeurs(0);
+            }
             bdgDeveloppeurs.DataSource = lesDeveloppeurs;
             dgvDeveloppeurs.DataSource = bdgDeveloppeurs;
             dgvDeveloppeurs.Columns["iddeveloppeur"].Visible = false;
@@ -69,12 +78,14 @@ namespace habilitations2024.view
             dgvDeveloppeurs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+
         /// <summary>
         /// Affiche les profils
         /// </summary>
         private void RemplirListeProfils()
         {
             List<Profil> lesProfils = controller.GetLesProfils();
+            lesProfils.Insert(0, new Profil(99, ""));
             bdgProfils.DataSource = lesProfils;
             cboProfil.DataSource = bdgProfils;
         }
@@ -254,5 +265,14 @@ namespace habilitations2024.view
             txtPwd2.Text = "";
         }
 
+        private void FrmHabilitations_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboProfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RemplirListeDeveloppeurs();
+        }
     }
 }
